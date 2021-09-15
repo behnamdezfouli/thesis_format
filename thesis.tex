@@ -1,0 +1,94 @@
+\documentclass[12pt]{thesis} 
+
+\usepackage[T1]{fontenc}        % euro quality fonts [T1] (togeth. w/ textcomp)
+
+\usepackage{textcomp, amssymb}  % additional symbols (there are more packages)
+
+\usepackage[applemac]{inputenc}   % umlaute in input file
+\usepackage{setspace}           % doublespacing
+\usepackage{anysize}            % margin package sets tighter margins
+
+\usepackage[all]{xy}            % creating figures within latex
+
+\usepackage[tight]{subfigure}% subfigures: figures within figures
+
+\usepackage{cite}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+
+\usepackage[font=small,skip=2pt]{caption}
+\usepackage{array}
+\usepackage{float}
+\usepackage{nomencl}
+\usepackage{hyperref}
+
+\usepackage{aeguill}          % PS converted CM fonts for better acro preview
+
+\usepackage[pdftex]{graphicx} % graphics packages
+
+\marginsize{1.5in}{0.9in}{0.5in}{1.5in} % small margins
+
+
+\pagestyle{plain}               % pagestyle: headings, empty, plain
+
+% new theorems
+\newtheorem{example}{Example}
+
+
+%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\pagenumbering{roman} % titlepage does not get a number - that's odd, but good.
+
+\ifpdf\pdfbookmark[1]{Title}{label:title}\fi              \input{titlepage.tex}
+
+% \newpage                                                     \input{spruch.tex}
+
+\makenomenclature
+
+{\doublespacing
+\newpage\ifpdf\pdfbookmark[1]{Acknowledgement}{label:ack}\fi\input{acknowledge.tex}
+\newpage\ifpdf\pdfbookmark[1]{Abstract}{label:abst}\fi     \input{abstract.tex}
+}
+
+\newpage\ifpdf\pdfbookmark[1]{Table of Contents}{label:toc}\fi \tableofcontents
+\newpage\ifpdf\pdfbookmark[1]{List of Figures}{label:lof}\fi     \listoffigures
+\newpage\ifpdf\pdfbookmark[1]{List of Tables}{label:lot}\fi       \listoftables
+\newpage\ifpdf\pdfbookmark[1]{List of Abbreviations}{label:loa}\fi       
+
+
+\renewcommand\nomname{List of Abbreviations}
+\nomenclature{QoS}{Quality of Service}
+\nomenclature{SDN}{Software-Defined Networking}
+\nomenclature{FDK}{Fog Development Kit}
+\nomenclature{ODL}{OpenDaylight}
+\nomenclature{SIOTLAB}{Santa Clara University Internet of Things Laboratory}
+\nomenclature{OVS}{Open vSwitch}
+\nomenclature{VM}{Virtual Machine}
+\nomenclature{RAA}{Resource Allocation Algorithm}
+\nomenclature{IoT}{Internet of Things}
+\nomenclature{MD-SAL}{Model-Driven Service Abstraction Layer}
+
+\printnomenclature
+
+
+\doublespacing
+\newpage\pagenumbering{arabic}
+
+\newpage\input{body.tex}
+
+
+\newpage\phantomsection%
+\addcontentsline{toc}{chapter}{\bibname}              % add Bibliography to TOC
+\bibliographystyle{IEEEtran}\bibliography{references}
+
+\newpage\phantomsection%
+\addcontentsline{toc}{chapter}{\indexname}                   % add Index to TOC
+
+
+\end{document}
+
